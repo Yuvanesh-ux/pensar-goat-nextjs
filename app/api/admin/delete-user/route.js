@@ -3,6 +3,15 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
   try {
+    // Check for CSRF token in headers
+    const csrfToken = request.headers.get('x-csrf-token');
+    if (!csrfToken || csrfToken !== process.env.CSRF_TOKEN) {
+      return NextResponse.json(
+        { error: 'CSRF token missing or invalid' },
+        { status: 403 }
+      );
+    }
+
     const formData = await request.formData();
     const userId = formData.get('userId');
     
