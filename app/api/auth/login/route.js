@@ -23,7 +23,7 @@ export async function POST(request) {
       );
     }
 
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '24h' });
     
     const response = NextResponse.json({ 
       success: true, 
