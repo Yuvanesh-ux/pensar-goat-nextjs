@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-
+#
 function UserProfile({ userId }) {
   const [userBio, setUserBio] = useState('');
   const [comments, setComments] = useState([]);
